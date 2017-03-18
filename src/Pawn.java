@@ -1,5 +1,3 @@
-package wwwww;
-
 public class Pawn{
 
 	private int id;
