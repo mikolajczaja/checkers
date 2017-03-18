@@ -79,50 +79,7 @@ public class Pawn{
 						&&(pawns[i].GetPositionY()==y))return pawns[i];
 		return null;
 	}
-	
-	
-	Pawn[] SetWhitePawns(Pawn[] pawns){
-		for(int i=1;i<=8;i++){
-			for(int j=1;j<=3;j++){
-				if((i%2)+(j%2)==1){
-					
-					pawns[iterator]=new Pawn(iterator,i,j,"white");				
-					//System.out.print(pawns[iterator]+"  ||   ");
-					iterator++;
-				}
-			}//System.out.print("\n");
-		}
-		return pawns;
-	}
-	
-	Pawn[] SetBlackPawns(Pawn[] pawns){	
-		for(int i=1;i<=8;i++){
-			for(int j=8;j>=6;j--){
-				if((i%2)+(j%2)==1){
-					pawns[iterator]=new Pawn(iterator,i,j,"black");
-					//System.out.print(pawns[iterator]+"  ||   ");
-					iterator++;
-				}
-			}//System.out.print("\n");
-		}
-		return pawns;
-	}
-	
-	void PrintPawns(Pawn[] pawns){
-		for(int i=1;i<=24;i++)
-				if((pawns[i])!=null)System.out.print(pawns[i]);
-	}
-	void PrintBoard(Pawn[] pawns){
-		for(int i=8;i>=1;i--){
-			for(int j=1;j<=8;j++){
-				if((GetPawnByPosition(j,i,pawns))!=null){
-					if((GetPawnByPosition(j,i,pawns)).colour=="white")System.out.print("w ");
-					if((GetPawnByPosition(j,i,pawns)).colour=="black")System.out.print("b ");
-				} else System.out.print("- ");
-			} System.out.print("\n");
-		}
-	}
-	
+
 	void PrintX(Pawn[] pawns,int j){
 		System.out.print("\n");
 		for(int i=1;i<=8;i++){

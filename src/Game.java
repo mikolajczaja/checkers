@@ -1,21 +1,25 @@
-public class Game extends Pawn{
-	public Pawn[] pawns;
+public class Game{
 
-	Game SetBoard(){
-		Game game2=new Game();
-		Pawn[] pawns= new Pawn[25]; //czemu 25?
-		game2.pawns=SetWhitePawns(pawns);
-		game2.pawns=SetBlackPawns(pawns);
-		//PrintPawns(pawns);
-		PrintBoard(pawns);
-		for(int j=8;j>=1;j--)PrintX(pawns,j);
-		return game2;
-	}
+	Board board;
 	
+	//Game(Board board){
+	//	this.board=board;
+	//}
 	
 	public static void main(String[] args) {
-		Game game1= new Game();
-		game1.SetBoard();
+		Board board1= new Board();
+		//Game game1= new Game(board1);
+		
+		board1.SetBoard();
+		//board1.PrintPawnsById();
+		System.out.print("\n");
+		//board1.PrintBoard();
+		
+		board1.MovePawn(4,3,5,4);
+		board1.Move();
+		//board1.PrintPawnsById();
+		System.out.print("\n");
+		board1.PrintBoard();
 
 
 	}
