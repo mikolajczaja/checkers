@@ -5,34 +5,34 @@ public class Board {
 	String turn="white";
 	
 	
-	void ChangeTurn(){
+	void changeTurn(){
 		if(this.turn=="white")this.turn="black";
 		else this.turn="white";
 	}
 	
-	Pawn GetPawnById(int id){
+	Pawn getPawnById(int id){
 		return pawns[id];
 	}
 	
-	Pawn GetPawnByPosition(int positionX, int positionY){
+	Pawn getPawnByPosition(int positionX, int positionY){
 		for(int i=1;i<=24;i++){
-			if((pawns[i].GetPositionX()==positionX)
-					&&(pawns[i].GetPositionY()==positionY))return pawns[i];
+			if((pawns[i].getPositionX()==positionX)
+					&&(pawns[i].getPositionY()==positionY))return pawns[i];
 		}
 	return null;
 	}
 	
-	boolean HasPawn(int positionX, int positionY){
-		if(GetPawnByPosition(positionX,positionY)!=null)return true;
+	boolean hasPawn(int positionX, int positionY){
+		if(getPawnByPosition(positionX,positionY)!=null)return true;
 		else return false;
 	}
 	
-	boolean IsWhite(int positionX, int positionY){
-		if(GetPawnByPosition(positionX,positionY).GetColour()=="white")return true;
+	boolean isWhite(int positionX, int positionY){
+		if(getPawnByPosition(positionX,positionY).getColour()=="white")return true;
 		else return false;	
 	}
 	
-	public void SetWhitePawns(){
+	public void setWhitePawns(){
 		for(int i=1;i<=8;i++){
 			for(int j=1;j<=3;j++){
 				if((i%2)+(j%2)==1){
@@ -46,7 +46,7 @@ public class Board {
 
 	}
 		
-	public void SetBlackPawns(){	
+	public void setBlackPawns(){	
 		for(int i=1;i<=8;i++){
 			for(int j=8;j>=6;j--){
 				if((i%2)+(j%2)==1){
@@ -58,22 +58,22 @@ public class Board {
 		}
 	}
 	
-	void SetBoard(){
-		SetWhitePawns();
-		SetBlackPawns();
+	void setBoard(){
+		setWhitePawns();
+		setBlackPawns();
 	}
 	
 	
-	void PrintPawnsById(){
+	void printPawnsById(){
 		for(int i=1;i<=24;i++)
 				if((pawns[i])!=null)System.out.println(pawns[i]);
 	}
 	
-	void PrintBoard(){
+	void printBoard(){
 		for(int i=8;i>=1;i--){
 			for(int j=1;j<=8;j++){
-				if((HasPawn(i,j))){
-					if(IsWhite(i,j))System.out.print("w ");
+				if((hasPawn(i,j))){
+					if(isWhite(i,j))System.out.print("w ");
 					else System.out.print("b ");
 				} 
 				else System.out.print("- ");
@@ -82,39 +82,39 @@ public class Board {
 		}
 	}
 	
-	int CountNearbyEnemies(Pawn pawn){
+	int countNearbyEnemies(Pawn pawn){
 		int i=0;
-		if(GetPawnByPosition(pawn.GetPositionX()-1,pawn.GetPositionY()-1).GetColour()!=pawn.GetColour())i++;
-		if(GetPawnByPosition(pawn.GetPositionX()+1,pawn.GetPositionY()-1).GetColour()!=pawn.GetColour())i++;
-		if(GetPawnByPosition(pawn.GetPositionX()+1,pawn.GetPositionY()+1).GetColour()!=pawn.GetColour())i++;
-		if(GetPawnByPosition(pawn.GetPositionX()-1,pawn.GetPositionY()+1).GetColour()!=pawn.GetColour())i++;
+		if(getPawnByPosition(pawn.getPositionX()-1,pawn.getPositionY()-1).getColour()!=pawn.getColour())i++;
+		if(getPawnByPosition(pawn.getPositionX()+1,pawn.getPositionY()-1).getColour()!=pawn.getColour())i++;
+		if(getPawnByPosition(pawn.getPositionX()+1,pawn.getPositionY()+1).getColour()!=pawn.getColour())i++;
+		if(getPawnByPosition(pawn.getPositionX()-1,pawn.getPositionY()+1).getColour()!=pawn.getColour())i++;
 	
 		return i;
 	}
 	
-	Pawn PickNearbyEnemy(Pawn pawn,int number){
-		if(number>=CountNearbyEnemies(pawn)){
-			if(number==1)return GetPawnByPosition(pawn.GetPositionX()-1,pawn.GetPositionY()-1);
-			if(number==2)return GetPawnByPosition(pawn.GetPositionX()+1,pawn.GetPositionY()-1);
-			if(number==3)return GetPawnByPosition(pawn.GetPositionX()+1,pawn.GetPositionY()+1);
-			if(number==4)return GetPawnByPosition(pawn.GetPositionX()-1,pawn.GetPositionY()+1);
+	Pawn pickNearbyEnemy(Pawn pawn,int number){
+		if(number>=countNearbyEnemies(pawn)){
+			if(number==1)return getPawnByPosition(pawn.getPositionX()-1,pawn.getPositionY()-1);
+			if(number==2)return getPawnByPosition(pawn.getPositionX()+1,pawn.getPositionY()-1);
+			if(number==3)return getPawnByPosition(pawn.getPositionX()+1,pawn.getPositionY()+1);
+			if(number==4)return getPawnByPosition(pawn.getPositionX()-1,pawn.getPositionY()+1);
 		}
 		return null;
 	}
 	
-	boolean CaptureEnemy(Pawn pawn,int number){
+	boolean captureEnemy(Pawn pawn,int number){
 		
-		while((PickNearbyEnemy(pawn,number))!=null){
+		while((pickNearbyEnemy(pawn,number))!=null){
 			
-			int destinationX=pawn.GetPositionX()+(pawn.GetPositionX()
-					-PickNearbyEnemy(pawn,number).GetPositionX())*(-2);
+			int destinationX=pawn.getPositionX()+(pawn.getPositionX()
+					-pickNearbyEnemy(pawn,number).getPositionX())*(-2);
 			
-			int destinationY=pawn.GetPositionY()+(pawn.GetPositionY()
-					-PickNearbyEnemy(pawn,number).GetPositionY()*(-2));
+			int destinationY=pawn.getPositionY()+(pawn.getPositionY()
+					-pickNearbyEnemy(pawn,number).getPositionY()*(-2));
 		
-			if(GetPawnByPosition(destinationX,destinationY)==null){
-				pawn.SetPositionX(destinationX);
-				pawn.SetPositionY(destinationY);
+			if(getPawnByPosition(destinationX,destinationY)==null){
+				pawn.setPositionX(destinationX);
+				pawn.setPositionY(destinationY);
 				return true;
 			}
 
@@ -122,7 +122,7 @@ public class Board {
 		return false;
 	}
 	
-	void CapturePawn(){
+	void capturePawn(){
 		if(this.turn=="white"){
 			for(int i=1;i<=12;i++){
 				
@@ -138,26 +138,26 @@ public class Board {
 	}
 	
 	
-	void MovePawn(int positionX,int positionY,int destinationX,int destinationY){
+	void movePawn(int positionX,int positionY,int destinationX,int destinationY){
 		
 		System.out.println(Math.abs(destinationX-positionX));
 		System.out.println(Math.abs(destinationY-positionY));
-		System.out.println(HasPawn(destinationX,destinationY));
+		System.out.println(hasPawn(destinationX,destinationY));
 		
 		if((Math.abs(destinationX-positionX)==1)&&(Math.abs(destinationY-positionY)==1)
-				&&(HasPawn(destinationX,destinationY)==false))
+				&&(hasPawn(destinationX,destinationY)==false))
 		{
-			System.out.println(GetPawnByPosition(positionX,positionY));//
+			System.out.println(getPawnByPosition(positionX,positionY));//
 			System.out.println(destinationX+"  ,  "+destinationY);//
 			
-			GetPawnByPosition(positionX,positionY).SetPositionX(destinationX);
-			GetPawnByPosition(positionX,positionY).SetPositionY(destinationY);
+			getPawnByPosition(positionX,positionY).setPositionX(destinationX);
+			getPawnByPosition(positionX,positionY).setPositionY(destinationY);
 			System.out.println("---------moving");
 		};	
 	}
 	
-	void Move(){
-		pawns[6].SetPositionX(5);
-		pawns[6].SetPositionY(4);
+	void move(){
+		pawns[6].setPositionX(5);
+		pawns[6].setPositionY(4);
 	}
 }

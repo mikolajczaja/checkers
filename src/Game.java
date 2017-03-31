@@ -10,16 +10,16 @@ public class Game{
 		Board board1= new Board();
 		//Game game1= new Game(board1);
 		
-		board1.SetBoard();
+		board1.setBoard();
 		//board1.PrintPawnsById();
 		System.out.print("\n");
 		//board1.PrintBoard();
 		
-		board1.MovePawn(4,3,5,4);
-		board1.Move();
+		board1.movePawn(4,3,5,4);
+		board1.move();
 		//board1.PrintPawnsById();
 		System.out.print("\n");
-		board1.PrintBoard();
+		board1.printBoard();
 
 
 	}

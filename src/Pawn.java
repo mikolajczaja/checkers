@@ -27,65 +27,65 @@ public class Pawn{
 	
 
 	
-	String GetColour(){
+	String getColour(){
 		return this.colour;		
 	}
-	int GetId(){
+	int getId(){
 		return this.id;		
 	}	
 	
-	int GetPositionX(){
+	int getPositionX(){
 		return this.positionX;		
 	}	
 
-	void SetPositionX(int positionX){
+	void setPositionX(int positionX){
 		this.positionX=positionX;
 	}
 	
-	int GetPositionY(){
+	int getPositionY(){
 		return this.positionY;		
 	}	
 	
-	void SetPositionY(int positionY){
+	void setPositionY(int positionY){
 		this.positionY=positionY;
 	}
 	
-	boolean GetState(){
+	boolean getState(){
 		return this.state;
 	}
 	
-	void SetState(boolean state){
+	void setState(boolean state){
 		this.state=state;
 	}
 	
-	boolean GetType(){
+	boolean getType(){
 		return this.type;
 	}
 	
-	void SetType(boolean type){
+	void setType(boolean type){
 		this.type=type;
 	}
 	
 	
 	
-	Pawn GetPawnById(int id){
+	Pawn getPawnById(int id){
 		if(this.id==id)return this;
 		else return null;
 	}
 	
-	Pawn GetPawnByPosition(int x, int y, Pawn[] pawns){
+	Pawn getPawnByPosition(int x, int y, Pawn[] pawns){
 		for(int i=1;i<=24;i++)
-				if((pawns[i].GetPositionX()==x)
-						&&(pawns[i].GetPositionY()==y))return pawns[i];
+				if((pawns[i].getPositionX()==x)
+						&&(pawns[i].getPositionY()==y))return pawns[i];
 		return null;
 	}
 
-	void PrintX(Pawn[] pawns,int j){
+	void printX(Pawn[] pawns,int j){
 		System.out.print("\n");
 		for(int i=1;i<=8;i++){
-				if((GetPawnByPosition(i,j,pawns))!=null){
-					if((GetPawnByPosition(i,j,pawns)).colour=="white")System.out.print("w ");
-					if((GetPawnByPosition(i,j,pawns)).colour=="black")System.out.print("b ");
+				if((getPawnByPosition(i,j,pawns))!=null){
+					if((getPawnByPosition(i,j,pawns)).colour=="white")System.out.print("w ");
+					if((getPawnByPosition(i,j,pawns)).colour=="black")System.out.print("b ");
 				} else System.out.print("- ");
 		}
 	}	
